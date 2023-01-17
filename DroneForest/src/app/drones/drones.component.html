@@ -1,0 +1,109 @@
+
+<div>
+  <table>
+    <thead>
+      <th>Drone Id</th>
+      <th>Drone Status</th>
+      <th>Position</th>
+    </thead>
+    <tbody>
+      <tr *ngFor="let drone of getDrones(); let rowIx = index">
+        <td>{{drone.id}}</td>
+        <td><input type="checkbox" disabled id="droneStatus" name="droneStatus" [(ngModel)]="drone.isActive">
+        <button (click)="changeDroneStaus(rowIx)">Change Status</button></td>
+        <td>{{getDronePositionString(rowIx)}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h2>Fly Drone to me</h2>
+<table>
+  <thead>
+    <th>Drone</th>
+    <th>Loc X</th>
+    <th>Loc Y</th>
+    <th>Send it</th>
+    <th>Fly + Scan</th>
+  </thead>
+  <tr>
+    <td><select name="activeDrones" id="activeDrones" [(ngModel)]="selectedFlyToMeDroneId">
+      <option *ngFor="let drone of getActivatedDrones()"  name="optionId"id="optionId"[value]="drone.id"  >{{drone.id}}</option>
+    </select></td>
+    <td><input type="number" name="LocX" id="LocX" [(ngModel)]="flyToX"></td>
+    <td><input type="number" name="LocY" id="LocY" [(ngModel)]="flyToY"></td>
+    <td><button (click)="flyToMe()">Send it</button></td>
+    <td><button (click)="flyAndScan()">Fly and Scan</button></td>
+  </tr>
+</table>
+
+<h2>Scan</h2>
+<table>
+  <tr>
+    <td>
+      <form action="">
+
+        <div>
+          <Label>Drone</Label>
+          <select name="dronesToScan" id="dronesToScan" [(ngModel)]="selectedScanDroneId">
+            <option *ngFor="let drone of getActivatedDrones()"  name="optionId"id="optionId"[value]="drone.id"  >{{drone.id}}</option>
+          </select>
+        </div>
+
+        <!--<div>
+          <Label>Location X</Label>
+          <input type="number" name="LocX" id="LocX" [(ngModel)]="scanX">
+        </div>
+        <div>
+          <Label>Location Y</Label>
+          <input type="number" name="LocY" id="LocY" [(ngModel)]="scanY">
+        </div>-->
+        <div>
+          <button (click)="scan()">Scan</button>
+        </div>
+      </form>
+    </td>
+    <td>
+      <table>
+        <thead>
+          <th>Tree X</th>
+          <th>Tree Y</th>
+        </thead>
+        <tr *ngFor="let tree of getTreePositions()">
+          <td>{{tree.x}}</td>
+          <td>{{tree.y}}</td>
+
+        </tr>
+      </table>
+    </td>
+  </tr>
+
+</table>
+<h3>Nearest tree</h3>
+  <div>
+    <label>X Location: {{nearestTreeX}} </label>
+    <label>Y Location: {{nearestTreeY}} </label>
+  </div>
+  <div>
+    <label>X Distance: {{distanceTreeX}} </label>
+    <label>Y Distance: {{distanceTreeY}} </label>
+  </div>
+  <div>
+    <button (click)="examineNextTree()">Examine Nearest + Scan again</button>
+  </div>
+
+
+<h2>Mark Trees</h2>
+
+<form action="">
+<div>
+  <label for="">Location X</label>
+  <input type="text" name="locX" id="locX" [(ngModel)]="examineX">
+</div>
+<div>
+  <label for="">Location Y</label>
+  <input type="text" name="locY" id="locY" [(ngModel)]="examineY">
+</div>
+<div>
+  <button (click)="examine()">Examine</button>
+</div>
+</form>

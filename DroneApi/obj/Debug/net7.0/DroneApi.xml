@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DroneApi</name>
+    </assembly>
+    <members>
+        <member name="T:DroneStatus">
+            <summary>
+            Represents the status of a drone. Position is only set if the drone is active.
+            </summary>
+        </member>
+        <member name="M:DroneStatus.#ctor(System.Int32,System.Boolean,System.Nullable{Position})">
+            <summary>
+            Represents the status of a drone. Position is only set if the drone is active.
+            </summary>
+        </member>
+        <member name="T:Position">
+            <summary>
+            Represents a location. The coordinates must be between -750 and +750.
+            </summary>
+        </member>
+        <member name="M:Position.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Represents a location. The coordinates must be between -750 and +750.
+            </summary>
+        </member>
+    </members>
+</doc>
